@@ -1,7 +1,9 @@
-import { useHubx } from "../../hooks/hub"
-import { intl } from "../../language"
+import { ContentTable } from "./contentTable"
+import { HeaderForm } from "./headerForm"
 
 export const Worker = () => {
-    const {lang} = useHubx()
-    return <p>{intl['worker_icon_tooltip'][lang]}</p>
+    return <div>
+        <HeaderForm />
+        <ContentTable />
+    </div>
 }

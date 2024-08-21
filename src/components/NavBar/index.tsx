@@ -8,7 +8,7 @@ import { useState } from "react"
 
 export const NavBar = () => {
     const {lang} = useHubx()
-    const [selectedTab, setSelectedTab] = useState("")
+    const [selectedTab, setSelectedTab] = useState("worker")
     
     const isTabSelected = (tabName: string) => {
         return tabName === selectedTab ? 'selected' : ''

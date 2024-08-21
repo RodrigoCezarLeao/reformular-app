@@ -16,7 +16,7 @@ function App() {
       <Router>
         <div>
           <NavBar />
-          <div style={{width: '95%', padding: '1rem', marginLeft: '50px'}}>
+          <div style={{width: '95%', marginLeft: '50px'}}>
             <Routes>
               <Route path="/worker" element={<Worker />} />
               <Route path="/construction" element={<Construction />} />

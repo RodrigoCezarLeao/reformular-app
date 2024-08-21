@@ -11,5 +11,18 @@ export const intl: Record<string, Record<string, string>> = {
         'pt': 'Calendário',
         'en': 'Calendar',
     },
+    'worker_input_title_label': {
+        'pt': 'Nome',
+        'en': 'Name',
+    },
+    'worker_add_button': {
+        'pt': 'Adicionar',
+        'en': 'Insert',
+    },
+    'worker_table_action_column': {
+        'pt': 'Ações',
+        'en': 'Actions',
+    },
+    
     
 }

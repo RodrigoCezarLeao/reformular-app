@@ -9,7 +9,7 @@ export const NavBarContainer = styled('div')`
     gap: 1rem;
     width: 50px;
     align-items: center;
-    padding-top: 2rem;
+    padding-top: 7rem;
     
     & svg {
         cursor: pointer;
