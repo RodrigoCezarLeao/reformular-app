@@ -1,0 +1,29 @@
+* { margin: 0px; padding: 0px }
+
+:root {
+    --primary-color: #3a2d28;
+    --secondary-color: #a48374;
+    --tertiary-color: #cbad8d;
+    --quaternary-color: #d1c7bd;
+    --quinary-color: #ebe3d8;
+    --senary-color: #f1ede6;
+  }
+
+div.langSwitch {
+    display: flex;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    gap: 5px;
+}
+
+div.langSwitch img {
+    width: 50px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px rgb(220, 202, 202);
+    cursor: pointer;
+}
+
+.not_selected {
+    opacity: .4;
+}
