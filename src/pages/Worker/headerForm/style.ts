@@ -18,14 +18,6 @@ export const FormContainer = styled('div')`
     }
 `
 
-export const SaveButton = styled(Button)`
-    background: var(--primary-color);
-
-    :hover {
-        background: var(--secondary-color);
-    }
-`
-
 export const Hr = styled('hr')`
     border: 1px solid var(--senary-color);
 `

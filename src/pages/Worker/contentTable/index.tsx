@@ -3,15 +3,16 @@ import { useHubx } from "../../../hooks/hub";
 import { intl } from "../../../language";
 import { Worker } from "../../../models/worker"
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { WorkerService } from "../../../services/workerService";
 
-const getColumns = (lang: string): GridColDef<Worker>[] => {
+const getColumns = (lang: string, refetch: () => void): GridColDef<Worker>[] => {
     return [
         {
             field: 'title',
             headerName: intl['worker_input_title_label'][lang],
             headerAlign: 'center',
             align: 'center',
-            width: 300,
+            width: 500,
             editable: false,
             renderCell: (params) => {
                 return <p style={params.row.active ? {} : {textDecoration: 'line-through', color: 'var(--secondary-color)'}}>{params.value}</p>
@@ -26,7 +27,13 @@ const getColumns = (lang: string): GridColDef<Worker>[] => {
             editable: false,
             renderCell: (params) => {
                 return <>
-                    <Delete style={params.row.active ? {} : {textDecoration: 'line-through', color: 'var(--secondary-color)', cursor: 'pointer'}} />
+                    <Delete 
+                        style={params.row.active ? {cursor: 'pointer'} : {textDecoration: 'line-through', color: 'var(--secondary-color)', cursor: 'pointer'}} 
+                        onClick={() => {
+                            WorkerService.deleteWorker(params.row.id)
+                            refetch()
+                        }}
+                    />
                     {params.row.active ? <VisibilityOff style={{cursor: 'pointer'}}/> : <Visibility style={{cursor: 'pointer', color: 'var(--secondary-color)'}}/>}
                 </>
             }
@@ -34,23 +41,27 @@ const getColumns = (lang: string): GridColDef<Worker>[] => {
     ]
 }
 
-const rows: Worker[] = [
-    { id: '1', title: 'Snow', active: true},
-    { id: '2', title: 'Lannister', active: true },
-    { id: '3', title: 'Lannister', active: true },
-    { id: '4', title: 'Stark', active: true },
-    { id: '5', title: 'Targaryen', active: true },
-    { id: '6', title: 'Melisandre',active: true },
-    { id: '7', title: 'Clifford', active: true },
-    { id: '8', title: 'Frances', active: false },
-    { id: '9', title: 'Roxie', active: false },
-  ];
+export interface ContentTableProps {
+    rows: Worker[]
+    refetch: () => void
+}
   
-export const ContentTable = () => {
+export const ContentTable = ({rows, refetch}: ContentTableProps) => {
     const {lang} = useHubx()
 
-    return <DataGrid 
-        rows={rows}
-        columns={getColumns(lang)}
-    />
+    return <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+        <div style={{width: '600px'}}>
+            <DataGrid
+                rows={rows}
+                columns={getColumns(lang, refetch)}
+                initialState={{
+                    pagination: {
+                      paginationModel: { pageSize: 10, page: 0 },
+                    },
+                  }}
+                pageSizeOptions={[5, 10, 20]}
+                pagination
+            />
+        </div>
+    </div>
 }
