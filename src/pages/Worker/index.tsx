@@ -3,20 +3,30 @@ import { ContentTable } from "./contentTable"
 import { HeaderForm } from "./headerForm"
 import { Worker } from "../../models/worker"
 import { WorkerService } from "../../services/workerService"
+import { useHubx } from "../../hooks/hub"
+import { LoadingScreen } from "../../hooks/LoadingScreen"
 
 export const WorkerPage = () => {
     const [workers, setWorkers] = useState<Worker[]>([])
+    
+    const {startLoading, stopLoading} = useHubx()
 
     const refetch = () => {
-        WorkerService.getWorkers().then((data) => setWorkers(data))
+        startLoading()
+        WorkerService.getWorkers()
+            .then((data) => setWorkers(data))
+            .finally(() => stopLoading())
     }
 
     useEffect(() => {
         refetch()
     }, [])
 
-    return <div>
-        <HeaderForm  workers={workers} setWorkers={setWorkers}/>
-        <ContentTable rows={workers} refetch={refetch}/>
-    </div>
+    return <>
+        <LoadingScreen />
+        <div>
+            <HeaderForm  workers={workers} setWorkers={setWorkers}/>
+            <ContentTable rows={workers} refetch={refetch}/>
+        </div>
+    </>
 }

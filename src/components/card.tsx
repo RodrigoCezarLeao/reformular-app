@@ -1,5 +1,5 @@
 import { useHubx } from "../hooks/hub"
-import { intl } from "../language"
+import { intl } from "../hooks/language"
 
 export const Card = () => {
     const {lang} = useHubx()

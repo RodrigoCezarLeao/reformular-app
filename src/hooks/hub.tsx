@@ -13,11 +13,25 @@ export interface EventHub {
 }
 
 export interface Hub2 {
+    // Observer
     subscribe: (event: string, callback: Function, key?: string) => void;
     notify: (event: string) => void;
     unsubscribe: (key: string) => void;
+
+    // Language
     lang: string;
     setLang: (value: string) => void;
+
+    // Toaster
+    openToaster: (message: string) => void;
+    closeToaster: () => void;
+    message: string;
+    isToasterOpen: boolean;
+
+    // Loading
+    isLoading: boolean;
+    startLoading: () => void;
+    stopLoading: () => void;
 }
 
 const ObserverContext = createContext<Hub2 | null>(null);
@@ -25,6 +39,27 @@ const ObserverContext = createContext<Hub2 | null>(null);
 export const useHub = () => {
     const [events, setEvents] = useState<EventHub[]>([])
     const [lang, setLang] = useState<string>('pt')
+    const [isToasterOpen, setIsToasterOpen] = useState(false)
+    const [message, setMessage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+    
+    const openToaster = (message: string) => {
+        setMessage(message)
+        setIsToasterOpen(true)
+    }
+
+    const closeToaster = () => {
+        setMessage('')
+        setIsToasterOpen(false)
+    }
+
+    const startLoading = () => {
+        setIsLoading(true)
+    }
+
+    const stopLoading = () => {
+        setIsLoading(false)
+    }
 
     useEffect(() => {
         subscribe(HUB_EVENTS.CHANGE_LANGUAGE_APP_PT, () => setLang('pt'))
@@ -59,7 +94,8 @@ export const useHub = () => {
         }
     }
 
-    return {subscribe, notify, unsubscribe, lang, setLang}
+    return {subscribe, notify, unsubscribe, lang, setLang, openToaster, closeToaster, 
+        message, isToasterOpen, isLoading, startLoading, stopLoading}
 }
 
 export const ObserverProvider = ({ children }: { children: React.ReactNode }) => {

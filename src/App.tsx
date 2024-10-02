@@ -7,7 +7,6 @@ import { WorkerPage } from './pages/Worker'
 import { Schedule } from './pages/Schedule'
 import { Construction } from './pages/Construction'
 
-
 function App() {
   return (
     <ObserverProvider>
@@ -16,7 +15,7 @@ function App() {
       <Router>
         <div>
           <NavBar />
-          <div style={{width: '95%', marginLeft: '50px'}}>
+          <div>
             <Routes>
               <Route path="/worker" element={<WorkerPage />} />
               <Route path="/construction" element={<Construction />} />
