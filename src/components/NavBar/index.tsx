@@ -2,7 +2,7 @@ import { CalendarMonth, Construction, Engineering } from "@mui/icons-material"
 import { NavBarContainer } from "./style"
 import { Tooltip } from "@mui/material"
 import { useHubx } from "../../hooks/hub"
-import { intl } from "../../language"
+import { intl } from "../../hooks/language"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 

@@ -1,5 +1,5 @@
 import { HUB_EVENTS, useHubx } from "../hooks/hub"
-import { intl } from "../language"
+import { intl } from "../hooks/language"
 
 export const Button = () => {
     const { lang } = useHubx()

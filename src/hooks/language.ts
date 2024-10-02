@@ -39,6 +39,20 @@ export const intl: Record<string, Record<string, string>> = {
         'pt': 'Nome já cadastrado!',
         'en': 'Name already used!',
     },
-    
-    
+    'worker_insertion_name_success': {
+        'pt': 'Trabalhador inserido com sucesso!',
+        'en': 'Worker included successfully!',
+    },
+    'worker_delete_confirm_dialog': {
+        'pt': 'Tem certeza que deseja excluir o trabalhador?',
+        'en': 'Do you confirm worker deletion?',
+    },
+    'delete_worker_tooltip': {
+        'pt': 'Excluir trabalhador',
+        'en': 'Delete worker',
+    },
+    'table_total_page_count': {
+        'pt': 'Linhas por página',
+        'en': 'Rows per page',
+    },
 }
